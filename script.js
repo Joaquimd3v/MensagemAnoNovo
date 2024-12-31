@@ -53,4 +53,4 @@ setTimeout(function() {
     
     // Exibe a segunda parte
     document.querySelector('.outer').style.display = 'block';
-}, 12000); // 12 segundos para a animação de digitação terminar
+}, 10000); // 12 segundos para a animação de digitação terminar
