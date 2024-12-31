@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagem Gradual com Efeitos de Ano Novo</title>
+    
+    <!-- Importação das fontes -->
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: roboto;
+        }
+
+        body {
+            background: #1e272e;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: 'Dancing Script', cursive;
+            background-color: #1e272e;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .outer {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: auto;
+            height: 300px;
+            background: inherit;
+            display: none; /* Inicialmente escondido */
+        }
+
+        h1 {
+            margin-right: 50px;
+            font-size: 6rem;
+            line-height: 100px;
+            color: #eee;
+            position: relative;
+        }
+
+        h3 {
+            font-size: 72px;
+            animation: animate3 6s linear;
+            font-family: 'Pacifico', cursive;
+            color: #1e272e;
+            text-shadow: 0 1px #18dcff,
+                         0 -1px #18dcff,
+                         1px 0 #18dcff,
+                         -1px 0 #18dcff,
+                         0 0 10px #18dcff;
+        }
+
+        .old {
+            position: relative;
+            animation: animate1 3s linear forwards;
+            opacity: 0;
+            margin-left: 30px; /* Ajuste feito para aumentar o espaçamento */
+        }
+
+        @keyframes animate1 {
+            0% { bottom: 0; opacity: 1; }
+            100% { bottom: 100px; opacity: 0; }
+        }
+
+        .new {
+            position: relative;
+            margin-right: ;
+            bottom: 161px;
+            animation: animate2 3s linear forwards;
+        }
+
+        @keyframes animate2 {
+            0% { opacity: 0; left: 0; }
+            100% { opacity: 1; left: 0; }
+        }
+
+        @keyframes animate3 {
+            0% { opacity: 0; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Efeito de digitação */
+        .message {
+            font-size: 10vw;
+            white-space: normal;
+            overflow: hidden;
+            font-family: inherit;
+            border-right: .15em solid #000;
+            width: 100%;
+            animation: typing 6s steps(60) 1s forwards, blink 0.75s step-end infinite;
+            visibility: hidden;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+                visibility: visible;
+            }
+            to {
+                width: 100%;
+                visibility: visible;
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        /* Responsividade para telas com largura de até 375px */
+        @media screen and (max-width: 375px) {
+            h1 {
+                font-size: 4rem;
+                line-height: 80px;
+            }
+
+            h3 {
+                font-size: 40px;
+                text-shadow: 0 1px #18dcff,
+                             0 -1px #18dcff,
+                             1px 0 #18dcff,
+                             -1px 0 #18dcff,
+                             0 0 5px #18dcff;
+            }
+
+            .outer {
+                height: 250px;
+            }
+
+            .old {
+                animation: animate1 3s linear forwards;
+                opacity: 1;
+                margin-left: 105px;
+
+            }
+
+            .new {
+                position: relative;
+                margin-left:105px;
+                bottom: 161px;
+                animation: animate2 3s linear forwards;
+
+            }
+        }
+
+        .hat {
+            position: absolute;
+            top: 130px;
+            left: 167px;
+            transform: translateX(-50%) rotate(-50deg);
+            width: 50px;
+            height: 60px;
+            background: url('pngtree-cartoon-style-santa-claus-christmas-hat-png-image_2465296-removebg-preview.png') no-repeat center center;
+            background-size: cover;
+            z-index: 10;
+            opacity: 0;
+            animation: showHat 2s ease-in-out forwards;
+        }
+
+        @keyframes showHat {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(30px) rotate(-50deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) rotate(0deg);
+            }
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Primeira página com a mensagem de digitação -->
+    <div class="message">
+        Pessoas boas não deveriam ter anos ruins, e você é uma delas. Você é uma pessoa especial e sou grato por tê-la na minha vida.
+    </div>
+
+    <!-- Segunda página com a contagem regressiva e o chapéu -->
+    <div class="outer">
+        <h3>Feliz Ano Novo!</h3>
+        <h1>
+            20
+            <span class="old">25</span>
+            <span class="new">25</span>
+        </h1>
+        <div class="hat"></div> <!-- Chapéu de Natal -->
+        <img src="Sem título.webp" alt="Imagem de Ano Novo">
+    </div>
+
+    <script>
+        // Função para exibir a segunda parte após a animação de digitação
+        setTimeout(function() {
+            // Esconde a primeira parte
+            document.querySelector('.message').style.display = 'none';
+            
+            // Exibe a segunda parte
+            document.querySelector('.outer').style.display = 'block';
+        }, 10000); // 6 segundos para a animação de digitação terminar
+    </script>
+</body>
+</html>
