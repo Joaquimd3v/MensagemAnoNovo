@@ -148,8 +148,8 @@ h3 {
 
 .hat {
     position: absolute;
-    top: 127px;
-    left: 205px;
+    top: 128px;
+    left: 199px;
     transform: translateX(-50%) rotate(-50deg);
     width: 50px;
     height: 60px;
